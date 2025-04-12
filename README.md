@@ -9,8 +9,16 @@
    ```
 3. Run the game:
    ```bash
-   java -cp src/main/java Main
+   java -cp src/main/java StartScreen
    ```
+
+## Screenshots
+
+### Starting Screen
+![Starting Screen](assets/screenshots/start_screen.png)
+
+### Game GUI
+![Game GUI](assets/screenshots/game_gui.png)
 
 ## How to Play
 
