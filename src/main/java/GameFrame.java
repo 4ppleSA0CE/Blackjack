@@ -8,6 +8,7 @@ public class GameFrame extends JFrame {
     private final JPanel playersPanel;
     private final JPanel controlPanel;
     private final JLabel statusLabel;
+    private final JLabel winLossLabel;
 
     public GameFrame(String playerName) {
         game = new Game();
@@ -65,6 +66,10 @@ public class GameFrame extends JFrame {
         statusLabel.setFont(new Font("Arial", Font.BOLD, 16));
         controlPanel.add(statusLabel);
 
+        // Win/Loss label
+        winLossLabel = new JLabel("Wins: 0 | Losses: 0");
+        controlPanel.add(winLossLabel);
+
         add(mainPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
 
@@ -99,6 +104,7 @@ public class GameFrame extends JFrame {
                     break;
                 case ROUND_OVER:
                     statusLabel.setText("Round over! Click 'New Game' to play again");
+                    winLossLabel.setText("Wins: " + game.getWins() + " | Losses: " + game.getLosses());
                     break;
             }
         }

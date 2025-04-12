@@ -10,6 +10,8 @@ public class Game {
     private Player dealer;
     private Player currentPlayer;
     private GameState gameState;
+    private int wins;
+    private int losses;
 
     /**
      * Represents the possible states of the game.
@@ -29,6 +31,8 @@ public class Game {
         this.players = new ArrayList<>();
         this.dealer = new Player("Dealer", true);
         this.gameState = GameState.BETTING;
+        this.wins = 0;
+        this.losses = 0;
     }
 
     /**
@@ -144,23 +148,28 @@ public class Game {
             boolean playerBust = player.getHand().isBust();
             
             if (playerBust) {
-                // Player busts, they lose their bet
+                // Player busts, they lose
                 player.loseBet();
+                losses++;
             } else if (dealerBust) {
                 // Dealer busts, player wins
                 player.winBet();
+                wins++;
             } else if (player.getHand().isBlackjack() && !dealer.getHand().isBlackjack()) {
                 // Player has blackjack and dealer doesn't
                 player.blackjack();
+                wins++;
             } else if (playerValue > dealerValue) {
                 // Player's hand is higher than dealer's
                 player.winBet();
+                wins++;
             } else if (playerValue == dealerValue) {
                 // Push - return the bet
                 player.push();
             } else {
                 // Player's hand is lower than dealer's
                 player.loseBet();
+                losses++;
             }
         }
 
@@ -197,5 +206,21 @@ public class Game {
      */
     public List<Player> getPlayers() {
         return new ArrayList<>(players);
+    }
+
+    /**
+     * Gets the number of wins.
+     * @return The number of wins
+     */
+    public int getWins() {
+        return wins;
+    }
+
+    /**
+     * Gets the number of losses.
+     * @return The number of losses
+     */
+    public int getLosses() {
+        return losses;
     }
 } 
