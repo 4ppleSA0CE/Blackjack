@@ -17,7 +17,6 @@ public class Game {
      * Represents the possible states of the game.
      */
     public enum GameState {
-        BETTING,    // Players are placing bets
         PLAYING,    // Players are taking their turns
         DEALER_TURN, // Dealer is playing
         ROUND_OVER  // Round is complete
@@ -30,7 +29,7 @@ public class Game {
         this.deck = new Deck();
         this.players = new ArrayList<>();
         this.dealer = new Player("Dealer", true);
-        this.gameState = GameState.BETTING;
+        this.gameState = GameState.PLAYING;
         this.wins = 0;
         this.losses = 0;
     }
@@ -95,6 +94,7 @@ public class Game {
         if (currentPlayer.getHand().isBust()) {
             // If player busts, end the round immediately
             gameState = GameState.ROUND_OVER;
+            losses++;
             return;
         }
     }
@@ -149,26 +149,18 @@ public class Game {
             
             if (playerBust) {
                 // Player busts, they lose
-                player.loseBet();
                 losses++;
             } else if (dealerBust) {
                 // Dealer busts, player wins
-                player.winBet();
                 wins++;
             } else if (player.getHand().isBlackjack() && !dealer.getHand().isBlackjack()) {
                 // Player has blackjack and dealer doesn't
-                player.blackjack();
                 wins++;
             } else if (playerValue > dealerValue) {
                 // Player's hand is higher than dealer's
-                player.winBet();
                 wins++;
-            } else if (playerValue == dealerValue) {
-                // Push - return the bet
-                player.push();
-            } else {
+            } else if (playerValue < dealerValue) {
                 // Player's hand is lower than dealer's
-                player.loseBet();
                 losses++;
             }
         }

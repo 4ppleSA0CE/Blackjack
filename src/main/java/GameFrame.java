@@ -68,6 +68,7 @@ public class GameFrame extends JFrame {
 
         // Win/Loss label
         winLossLabel = new JLabel("Wins: 0 | Losses: 0");
+        winLossLabel.setForeground(Color.WHITE);
         controlPanel.add(winLossLabel);
 
         add(mainPanel, BorderLayout.CENTER);
@@ -93,9 +94,6 @@ public class GameFrame extends JFrame {
         
         if (game.getCurrentPlayer() != null) {
             switch (game.getGameState()) {
-                case BETTING:
-                    statusLabel.setText("Place your bet!");
-                    break;
                 case PLAYING:
                     statusLabel.setText(game.getCurrentPlayer().getName() + "'s turn");
                     break;
