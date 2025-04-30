@@ -36,7 +36,7 @@ public class Deck {
      * Shuffles the deck using Java's built-in shuffle algorithm.
      */
     public void shuffle() {
-        for (int i = 0; i<3; i++){
+        for (int i = 0; i<10; i++){
             Collections.shuffle(cards);
         }
     }
