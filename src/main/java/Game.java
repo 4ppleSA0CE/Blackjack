@@ -102,14 +102,17 @@ public class Game {
     /**
      * Player stays (ends their turn).
      * Moves to the next player or dealer's turn.
+     *
      */
     public void stay() {
         if (gameState != GameState.PLAYING) return;
-        nextPlayer();
+//        nextPlayer();
+        dealerTurn();
     }
 
     /**
      * Moves to the next player or dealer's turn.
+     * Was not used for this blackjack, could be implemented
      */
     private void nextPlayer() {
         int currentIndex = players.indexOf(currentPlayer);

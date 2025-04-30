@@ -10,7 +10,7 @@ public class Hand {
     /**
      * Creates an empty hand.
      */
-    public Hand(boolean isDealer) {
+    public Hand() {
         this.cards = new ArrayList<>();
     }
 

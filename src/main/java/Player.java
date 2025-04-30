@@ -14,7 +14,7 @@ public class Player {
      */
     public Player(String name, boolean isDealer) {
         this.name = name;
-        this.hand = new Hand(isDealer);
+        this.hand = new Hand();
         this.isDealer = isDealer;
     }
 
